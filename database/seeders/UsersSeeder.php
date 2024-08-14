@@ -14,18 +14,36 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'admin',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('password'),
-            'is_admin' => 1
+        $admin = User::create([
+            'name'          => 'admin',
+            'email'         => 'admin@test.com',
+            'password'      => bcrypt('password'),
+            'is_admin'      => 1,
+            'access_level'  => 1
         ]);
-        
-        User::create([
-            'name' => 'customer',
-            'email' => 'customer@test.com',
-            'password' => bcrypt('password'),
-            'is_admin' => 0
+
+        $pimpinan = User::create([
+            'name'          => 'pimpinan',
+            'email'         => 'pimpinan@test.com',
+            'password'      => bcrypt('password'),
+            'is_admin'      => 0,
+            'access_level'  => 2
+        ]);
+
+        $guide = User::create([
+            'name'          => 'guide',
+            'email'         => 'guide@test.com',
+            'password'      => bcrypt('password'),
+            'is_admin'      => 0,
+            'access_level'  => 3
+        ]);
+
+        $customer = User::create([
+            'name'          => 'customer',
+            'email'         => 'customer@test.com',
+            'password'      => bcrypt('password'),
+            'is_admin'      => 0,
+            'access_level'  => 4
         ]);
     }
 }

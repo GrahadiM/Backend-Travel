@@ -17,11 +17,14 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'is_admin',
+    //     'access_level'
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.

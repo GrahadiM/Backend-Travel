@@ -2,7 +2,7 @@
       <nav class="nav container">
         <a href="{{ route('home') }}" class="nav__logo"
           ><img
-            width="250"
+            width="180"
             style="height: 70px; object-fit: cover"
             src="{{ asset('frontend/assets/images/icon_web.png') }}"
             alt=""
@@ -24,12 +24,12 @@
               </a>
             </li> -->
 
-            <li class="nav__item">
+            {{-- <li class="nav__item">
               <a href="{{ route('posts') }}" class="nav__link {{ request()->is('posts') ? ' active-link' : '' }}"">
                 <i class="bx bx-book-alt nav__icon"></i>
                 <span class="nav__name">Blog</span>
               </a>
-            </li>
+            </li> --}}
 
             <li class="nav__item">
               <a href="{{ route('package') }}" class="nav__link {{ request()->is('paket-travel') ? ' active-link' : '' }}">
@@ -44,39 +44,39 @@
                 <span class="nav__name">Kontak Kami</span>
               </a>
             </li>
-            
+
             @guest
-              
+
             <li class="nav__item">
               <a href="{{ route('login') }}" class="nav__link">
                 <i class="bx bx-user nav__icon"></i>
                 <span class="nav__name">Login</span>
               </a>
             </li>
-                  
+
             @else
-                @if (Auth::user()->is_admin == 1)
-                    
+                @if (Auth::user()->is_admin == 0)
+
                 <li class="nav__item">
-                  <a href="{{ route('admin.dashboard') }}" class="nav__link">
-                    <i class="bx bx-user nav__icon"></i>
-                    <span class="nav__name">Dashboard</span>
-                  </a>
+                    <a href="{{ route('logout') }}" class="nav__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bx bx-user nav__icon"></i>
+                        <span class="nav__name">Logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
-                
+
                 @else
-            
+
                 <li class="nav__item">
-                  <a href="{{ route('logout') }}" class="nav__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bx bx-user nav__icon"></i>
-                    <span class="nav__name">Logout</span>
-                  </a>
-                  
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                      @csrf
-                  </form>
+                    <a href="{{ route('admin.dashboard') }}" class="nav__link">
+                        <i class="bx bx-user nav__icon"></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
                 </li>
-                
+
                 @endif
             @endguest
 

@@ -15,6 +15,7 @@ class AddColumnIsAdminToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_admin')->default(false);
+            $table->enum('access_level', [1, 2, 3, 4])->default(4)->comment('1=admin, 2=pimpinan, 3=guide, 4=customer');
         });
     }
 

@@ -9,6 +9,7 @@ class Gallery extends Model
 {
     use HasFactory;
 
+    protected $table = 'galleries';
     protected $guarded = [];
 
     public function travel_package(){
