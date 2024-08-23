@@ -24,7 +24,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            @include('partials.admin.sidebar')
+            @if (Auth::user()->is_admin == 1 && Auth::user()->access_level == 1)
+                @include('partials.admin.sidebar')
+            @elseif (Auth::user()->access_level == 2)
+                @include('partials.pimpinan.sidebar')
+            @elseif (Auth::user()->access_level == 3)
+                @include('partials.guide.sidebar')
+            @else
+            @endif
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Post;
-use App\Models\Category;
 use App\Models\TravelPackage;
 use App\Mail\StoreContactMail;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreEmailRequest;
 
 class PageController extends Controller
@@ -25,7 +27,25 @@ class PageController extends Controller
 
     public function detail(TravelPackage $travelPackage) : View
     {
-        return view('detail', compact('travelPackage'));
+        $whatsappLink = session('whatsappLink');
+        return view('detail', compact('travelPackage', 'whatsappLink'));
+    }
+
+    public function transaction(Request $request){
+        $data = new Order();
+        $data->user_id = auth()->user()->id;
+        $data->package_id = $request->package_id;
+        $data->total_price = $request->price;
+        $data->payment_status = 1;
+        $data->number = 'TRX-'.random_int(000000000001, 999999999999);
+        $data->save();
+        $user    = User::find($data->user_id);
+        $package = TravelPackage::find($data->package_id);
+        // Generate WhatsApp link
+        $whatsappLink = urlencode("Permisi Admin, Nama saya " . $user->name . ", Saya ingin pesan paket travel " . $package->name
+            . " dengan harga Rp. " . number_format($package->price, 2, ',', '.')
+            . ", berikut bukti pembayaran!");
+        return redirect()->back()->with('whatsappLink', $whatsappLink);
     }
 
     public function order(TravelPackage $travelPackage, Request $request) : View

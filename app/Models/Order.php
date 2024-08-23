@@ -11,4 +11,16 @@ class Order extends Model
 
     protected $table = 'orders';
     protected $guarded = [];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function guide(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function package(){
+        return $this->belongsTo(TravelPackage::class);
+    }
 }

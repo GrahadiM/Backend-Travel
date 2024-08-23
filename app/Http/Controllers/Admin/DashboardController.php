@@ -10,8 +10,8 @@ use App\Models\TravelPackage;
 class DashboardController extends Controller
 {
     public function index(){
-        $travelPackages = TravelPackage::with('galleries')->count();
-        $posts = Post::count();
-        return view('admin.dashboard.index', compact('travelPackages', 'posts'));
+        $data['travelPackages'] = TravelPackage::with('galleries')->count();
+        $data['posts']          = Post::count();
+        return view('admin.dashboard.index', $data);
     }
 }

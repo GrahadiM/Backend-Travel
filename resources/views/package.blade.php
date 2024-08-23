@@ -23,7 +23,7 @@
 
       <!--=============== Package Travel ===============-->
 
-      
+
       <section
         class="container package text-center"
         id="package"
@@ -31,26 +31,26 @@
       >
         <div class="row mt-5 justify-content-center">
             @foreach($travelPackages as $travelPackage)
-            <div class="col-lg-3" style="margin-bottom: 140px">
-                <div class="card package-card">
-                <a href="{{ route('detail', $travelPackage) }}" class="package-link">
-                    <div class="package-wrapper-img overflow-hidden">
-                    <img
-                        src="{{ Storage::url($travelPackage->galleries->first()->path) }}"
-                        class="img-fluid"
-                    />
+                <div class="col-lg-3" style="margin-bottom: 140px">
+                    <div class="card package-card">
+                        <a href="{{ route('detail', $travelPackage) }}" class="package-link">
+                            <div class="package-wrapper-img overflow-hidden">
+                                <img
+                                    src="{{ Storage::url($travelPackage->galleries->first()->path) }}"
+                                    class="img-fluid"
+                                />
+                            </div>
+                            <div class="package-price d-flex justify-content-center">
+                                <span class="btn btn-light position-absolute package-btn">
+                                    {{ __('Rp.') . number_format($travelPackage->price, 2, ',', '.') }}
+                                </span>
+                            </div>
+                            <h5 class="btn position-absolute w-100">
+                                {{ $travelPackage->name }}
+                            </h5>
+                        </a>
                     </div>
-                    <div class="package-price d-flex justify-content-center">
-                    <span class="btn btn-light position-absolute package-btn">
-                        ${{ $travelPackage->price }}
-                    </span>
-                    </div>
-                    <h5 class="btn position-absolute w-100">
-                    {{ $travelPackage->name }}
-                    </h5>
-                </a>
                 </div>
-            </div>
             @endforeach
         </div>
       </section>

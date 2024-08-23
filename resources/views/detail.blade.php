@@ -67,17 +67,34 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-warning btn-block mt-3" id="pay-button">
+                                {{-- <button class="btn btn-warning btn-block mt-3" id="pay-button">
                                     Pilih Metode Pembayaran
-                                </button>
+                                </button> --}}
                             </div>
                             <div class="col-md-6">
-                                <a onClick="return confirm('Apakah anda sudah membayar?')"
+                                @if(session('whatsappLink'))
+                                    <script type="text/javascript">
+                                        // Ambil link dari session
+                                        var whatsappLink = "{{ session('whatsappLink') }}";
+                                        // Buka link di tab baru
+                                        window.open("https://api.whatsapp.com/send?phone=6285767113554&text=" + whatsappLink, '_blank');
+                                    </script>
+                                @endif
+                                <form action="{{ route('transaction') }}" method="get" onsubmit="return confirmSubmission()">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
+                                    <input type="hidden" name="package_id" value="{{ $travelPackage->id }}">
+                                    <input type="hidden" name="price" value="{{ $travelPackage->price }}">
+                                    <button class="btn btn-book btn-block mt-3">
+                                        Kirim Bukti Pembayaran
+                                    </button>
+                                </form>
+                                {{-- <a onClick="return confirm('Apakah anda sudah membayar?')"
                                     class="btn btn-book btn-block mt-3"
                                     href="https://api.whatsapp.com/send?phone=6285767113554&text= Saya mau pesan paket travel {{ $travelPackage->name }} dengan harga {{ __('Rp.') . number_format($travelPackage->price, 2, ',', '.') }}, berikut bukti pembayaran!"
                                     target="_blank">
                                     Kirim Bukti Pembayaran
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
@@ -140,6 +157,14 @@
 @endpush
 
 @push('script-alt')
+
+    {{-- Confirm Submission --}}
+    <script type="text/javascript">
+        function confirmSubmission() {
+            return confirm("Apakah pesanan Anda sudah sesuai?");
+        }
+    </script>
+
     <script src="{{ asset('frontend/assets/libraries/swipper/js/app.js') }}"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {

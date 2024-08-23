@@ -12,32 +12,44 @@
     <li class="nav-item {{ request()->is('admin/dashboard*') ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <li class="nav-item {{ request()->is('admin/categories*') ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('admin.categories.index') }}">
             <i class="fas fa-list-alt"></i>
-            <span>Category</span></a>
+            <span>Category</span>
+        </a>
     </li>
 
     <li class="nav-item {{ request()->is('admin/travel-packages*') ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('admin.travel-packages.index') }}">
             <i class="fas fa-fw fa-hotel"></i>
-            <span>Travel Package</span></a>
+            <span>Travel Package</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/transactions*') ? ' active' : '' }} ">
+        <a class="nav-link" href="{{ route('admin.transactions.index') }}">
+            <i class="fas fa-fw fa-list-alt"></i>
+            <span>Transaction</span>
+        </a>
     </li>
 
     {{-- <li class="nav-item {{ request()->is('admin/cars*') ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('admin.cars.index') }}">
             <i class="fas fa-fw fa-car"></i>
-            <span>Car</span></a>
-    </li> --}}
+            <span>Car</span>
+        </a>
+    </li>
 
     <li class="nav-item {{ request()->is('admin/posts*') ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('admin.posts.index') }}">
             <i class="fas fa-fw fa-book"></i>
-            <span>Post</span></a>
-    </li>
+            <span>Post</span>
+        </a>
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider">

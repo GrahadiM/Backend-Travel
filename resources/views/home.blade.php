@@ -97,7 +97,7 @@
             </section>
         @endforeach
 
-        <!-- Cars -->
+        {{-- <!-- Cars -->
         <section class="container text-center">
             <h2 class="section-title">Daftar Harga Transpot</h2>
             <hr width="40" class="text-center" />
@@ -158,6 +158,6 @@
                     </div>
                 @endforeach
             </div>
-        </section>
+        </section> --}}
     </main>
 @endsection

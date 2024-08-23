@@ -55,26 +55,44 @@
             </li>
 
             @else
-                @if (Auth::user()->is_admin == 0)
+                @if (Auth::user()->is_admin == 1 && Auth::user()->access_level == 1)
 
                 <li class="nav__item">
-                    <a href="{{ route('logout') }}" class="nav__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="bx bx-user nav__icon"></i>
-                        <span class="nav__name">Logout</span>
-                    </a>
+                  <a href="{{ route('admin.dashboard') }}" class="nav__link">
+                    <i class="bx bx-user nav__icon"></i>
+                    <span class="nav__name">Dashboard</span>
+                  </a>
+                </li>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                @elseif (Auth::user()->access_level == 2)
+
+                <li class="nav__item">
+                  <a href="{{ route('pimpinan.dashboard') }}" class="nav__link">
+                    <i class="bx bx-user nav__icon"></i>
+                    <span class="nav__name">Dashboard</span>
+                  </a>
+                </li>
+
+                @elseif (Auth::user()->access_level == 3)
+
+                <li class="nav__item">
+                  <a href="{{ route('guide.dashboard') }}" class="nav__link">
+                    <i class="bx bx-user nav__icon"></i>
+                    <span class="nav__name">Dashboard</span>
+                  </a>
                 </li>
 
                 @else
 
                 <li class="nav__item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav__link">
-                        <i class="bx bx-user nav__icon"></i>
-                        <span class="nav__name">Dashboard</span>
-                    </a>
+                  <a href="{{ route('logout') }}" class="nav__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="bx bx-user nav__icon"></i>
+                    <span class="nav__name">Logout</span>
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
                 </li>
 
                 @endif
