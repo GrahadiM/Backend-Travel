@@ -32,7 +32,7 @@
                             <input type="text" class="form-control" id="number" name="number" value="{{ $order->number }}" />
                         </div>
                         <div class="form-group">
-                            <label for="guide_id">Status</label>
+                            <label for="guide_id">Nama Guide</label>
                             <select class="form-control" id="guide_id" name="guide_id">
                                 @foreach ($guides as $guide)
                                     <option value="{{ $guide->id }}">{{ Str::ucfirst($guide->name) }}</option>
